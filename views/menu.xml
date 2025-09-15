@@ -1,7 +1,7 @@
 <odoo>
   <menuitem id="menu_transfer_central_root"
             name="Transferencias a Casa Central"
-            parent="account.menu_finance"
+	    parent="account.menu_accounting_root"
             sequence="9999"/>
   <menuitem id="menu_transfer_central_items"
             name="Transferencias"
