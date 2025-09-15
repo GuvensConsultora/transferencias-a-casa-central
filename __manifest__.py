@@ -1,0 +1,17 @@
+{
+    "name": "Transferencias a Casa Central",
+    "version": "17.0.1.0.0",
+    "category": "Accounting",
+    "summary": "Registro y validación de transferencias de efectivo a Casa Central",
+    "author": "Tu Equipo",
+    "license": "LGPL-3",
+    "depends": ["account","operating_unit"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/res_company_views.xml",
+        "views/transfer_central_views.xml",
+        "views/menu.xml"
+    ],
+    "application": False,
+    "installable": True
+}

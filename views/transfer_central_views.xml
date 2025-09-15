@@ -1,0 +1,60 @@
+<odoo>
+  <!-- Lista simple para control operativo -->
+  <record id="view_transfer_central_tree" model="ir.ui.view">
+    <field name="name">transfer.central.tree</field>
+    <field name="model">transfer.central</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="date"/>
+        <field name="journal_from_id"/>
+        <field name="journal_central_id"/>
+        <field name="amount_system"/>
+        <field name="amount_input"/>
+        <field name="difference"/>
+        <field name="state"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Formulario con modifiers (Odoo 17: no usar attrs/states) -->
+  <record id="view_transfer_central_form" model="ir.ui.view">
+    <field name="name">transfer.central.form</field>
+    <field name="model">transfer.central</field>
+    <field name="arch" type="xml">
+      <form string="Transferencia a Casa Central">
+        <sheet>
+          <group>
+            <group>
+              <field name="date"/>
+              <field name="company_id" readonly="1"/>
+              <field name="journal_from_id" readonly="1"/>
+              <field name="journal_central_id" readonly="1"/>
+            </group>
+            <group>
+              <field name="amount_system" readonly="1"/>
+              <field name="amount_input"/>
+              <field name="difference" readonly="1"/>
+              <!-- reason requerido si hay diferencia; oculto si difference == 0 -->
+              <field name="reason"
+                     modifiers='{"required":[["difference","!=",0.0]], "invisible":[["difference","=",0.0]]}'/>
+            </group>
+          </group>
+        </sheet>
+        <footer>
+          <!-- Botón disponible en borrador; si hay diferencia sin motivo, queda readonly -->
+          <button name="action_validate" type="object" string="Validar" class="btn-primary"
+                  modifiers='{"invisible":[["state","!=","draft"]], "readonly":[["difference","!=",0.0], ["reason","=",false]]}'/>
+          <button string="Cerrar" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <!-- Acción -->
+  <record id="action_transfer_central" model="ir.actions.act_window">
+    <field name="name">Transferencias a Casa Central</field>
+    <field name="res_model">transfer.central</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{}</field>
+  </record>
+</odoo>

@@ -1,0 +1,11 @@
+<odoo>
+  <menuitem id="menu_transfer_central_root"
+            name="Transferencias a Casa Central"
+            parent="account.menu_finance"
+            sequence="9999"/>
+  <menuitem id="menu_transfer_central_items"
+            name="Transferencias"
+            parent="menu_transfer_central_root"
+            action="action_transfer_central"
+            sequence="1"/>
+</odoo>
